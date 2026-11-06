@@ -1,0 +1,69 @@
+/* Target only inputs that are both invalid AND have been interacted with */
+input.ng-invalid.ng-touched {
+  border: 2px solid red;
+  outline: none; /* Prevents default browser focus outline from overriding the border */
+}
+.full-width {
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.password-rules {
+  margin-top: -5px;
+  margin-bottom: 20px;
+  padding-left: 5px;
+}
+
+.password-rules div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 13px;
+  margin: 5px 0;
+}
+
+.password-rules mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+
+.valid {
+  color: #28a745;
+}
+
+.invalid {
+  color: #dc3545;
+}
+
+.match-message {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.match-message mat-icon {
+  font-size: 18px;
+  width: 18px;
+  height: 18px;
+}
+.password-rules mat-icon {
+  font-family: 'Material Icons';
+  font-size: 18px;
+  height: 18px;
+  width: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+.password-rules .invalid {
+  color: red;
+}
+
+.password-rules .valid {
+  color: green;
+}

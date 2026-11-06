@@ -1,0 +1,434 @@
+
+<!-- ========================= -->
+<!-- WAY 1 -->
+<!-- ========================= -->
+
+<h1>Signup | Way-1</h1>
+
+<input
+  type="text"
+  name="firstName"
+  [(ngModel)]="firstName"
+  placeholder="Enter your first name"
+/>
+<br /><br />
+
+<input
+  type="text"
+  name="lastName"
+  [(ngModel)]="lastName"
+  placeholder="Enter your last name"
+/>
+<br /><br />
+
+<input
+  type="email"
+  name="email"
+  [(ngModel)]="email"
+  placeholder="Enter your email"
+/>
+<br /><br />
+
+<input
+  type="text"
+  name="mobileNumber"
+  [(ngModel)]="mobileNumber"
+  placeholder="Enter your mobile number"
+/>
+<br /><br />
+
+<input
+  type="password"
+  name="password"
+  [(ngModel)]="passwordValue"
+  placeholder="Enter your password"
+/>
+<br /><br />
+
+<input
+  type="password"
+  name="reTypePassword"
+  [(ngModel)]="reTypePassword"
+  placeholder="Re-type your password"
+/>
+<br /><br />
+
+<button type="button" (click)="submitWay1()">Signup Way-1</button>
+
+<hr />
+
+<!-- ========================= -->
+<!-- WAY 2 -->
+<!-- ========================= -->
+
+<h1>Signup | Way-2</h1>
+
+<input
+  type="text"
+  name="firstNameWay2"
+  [(ngModel)]="signupRequestViewWay2.firstName"
+  placeholder="Enter your first name"
+/>
+<br /><br />
+
+<p>First Name: {{ signupRequestViewWay2.firstName }}</p>
+
+<input
+  type="text"
+  name="lastNameWay2"
+  [(ngModel)]="signupRequestViewWay2.lastName"
+  placeholder="Enter your last name"
+/>
+<br /><br />
+
+<input
+  type="email"
+  name="emailWay2"
+  [(ngModel)]="signupRequestViewWay2.email"
+  placeholder="Enter your email"
+/>
+<br /><br />
+
+<input
+  type="text"
+  name="mobileNumberWay2"
+  [(ngModel)]="signupRequestViewWay2.mobileNumber"
+  placeholder="Enter your mobile number"
+/>
+<br /><br />
+
+<input
+  type="password"
+  name="passwordWay2"
+  [(ngModel)]="signupRequestViewWay2.password"
+  placeholder="Enter your password"
+/>
+<br /><br />
+
+<input
+  type="password"
+  name="reTypePasswordWay2"
+  [(ngModel)]="signupRequestViewWay2.reTypePassword"
+  placeholder="Re-type your password"
+/>
+<br /><br />
+
+<button type="button" (click)="submitWay2()">Signup Way-2</button>
+
+<hr />
+
+<!-- ========================= -->
+<!-- WAY 3 -->
+<!-- TEMPLATE-DRIVEN FORM -->
+<!-- ========================= -->
+
+<h1>Signup | Way-3 (Template-Driven Form)</h1>
+
+<form #signupFormWay3="ngForm" (ngSubmit)="submitWay3(signupFormWay3)">
+
+  <input
+    type="text"
+    name="firstNameWay3"
+    [(ngModel)]="signupRequestViewWay3.firstName"
+    #firstNameWay3="ngModel"
+    required
+    minlength="2"
+    maxlength="20"
+    placeholder="Enter your first name"
+  />
+
+  @if (firstNameWay3.touched && firstNameWay3.hasError('required')) {
+    <p class="error">First name is required.</p>
+  }
+
+  @if (firstNameWay3.touched && firstNameWay3.hasError('minlength')) {
+    <p class="error">Minimum 2 characters required.</p>
+  }
+
+  @if (firstNameWay3.touched && firstNameWay3.hasError('maxlength')) {
+    <p class="error">Maximum 20 characters allowed.</p>
+  }
+
+  <br /><br />
+
+  <input
+    type="text"
+    name="lastNameWay3"
+    [(ngModel)]="signupRequestViewWay3.lastName"
+    #lastNameWay3="ngModel"
+    required
+    minlength="2"
+    maxlength="20"
+    placeholder="Enter your last name"
+  />
+
+  @if (lastNameWay3.touched && lastNameWay3.hasError('required')) {
+    <p class="error">Last name is required.</p>
+  }
+
+  @if (lastNameWay3.touched && lastNameWay3.hasError('minlength')) {
+    <p class="error">Minimum 2 characters required.</p>
+  }
+
+  @if (lastNameWay3.touched && lastNameWay3.hasError('maxlength')) {
+    <p class="error">Maximum 20 characters allowed.</p>
+  }
+
+  <br /><br />
+
+  <input
+    type="email"
+    name="emailWay3"
+    [(ngModel)]="signupRequestViewWay3.email"
+    #emailWay3="ngModel"
+    required
+    email
+    placeholder="Enter your email"
+  />
+
+  @if (emailWay3.invalid && (emailWay3.dirty || emailWay3.touched)) {
+    @if (emailWay3.hasError('required')) {
+      <p class="error">Email is required.</p>
+    }
+    @if (emailWay3.hasError('email')) {
+      <p class="error">Enter a valid email address.</p>
+    }
+  }
+
+  <br /><br />
+
+  <input
+    type="text"
+    name="mobileNumberWay3"
+    [(ngModel)]="signupRequestViewWay3.mobileNumber"
+    #mobileNumberWay3="ngModel"
+    required
+    pattern="^[0-9]{10}$"
+    placeholder="Enter your 10-digit mobile number"
+  />
+
+  @if (mobileNumberWay3.invalid &&
+       (mobileNumberWay3.dirty || mobileNumberWay3.touched)) {
+    @if (mobileNumberWay3.hasError('required')) {
+      <p class="error">Mobile number is required.</p>
+    }
+    @if (mobileNumberWay3.hasError('pattern')) {
+      <p class="error">Enter a valid 10-digit mobile number.</p>
+    }
+  }
+
+  <br /><br />
+
+  <input
+    type="password"
+    name="passwordWay3"
+    [(ngModel)]="signupRequestViewWay3.password"
+    #passwordWay3="ngModel"
+    required
+    minlength="6"
+    placeholder="Enter your password"
+  />
+
+  @if (passwordWay3.invalid &&
+       (passwordWay3.dirty || passwordWay3.touched)) {
+    @if (passwordWay3.hasError('required')) {
+      <p class="error">Password is required.</p>
+    }
+    @if (passwordWay3.hasError('minlength')) {
+      <p class="error">Password must be at least 6 characters.</p>
+    }
+  }
+
+  <br /><br />
+
+  <input
+    type="password"
+    name="reTypePasswordWay3"
+    [(ngModel)]="signupRequestViewWay3.reTypePassword"
+    #reTypePasswordWay3="ngModel"
+    required
+    minlength="6"
+    placeholder="Re-type your password"
+  />
+
+  @if (reTypePasswordWay3.invalid &&
+       (reTypePasswordWay3.dirty || reTypePasswordWay3.touched)) {
+    @if (reTypePasswordWay3.hasError('required')) {
+      <p class="error">Re-type password is required.</p>
+    }
+    @if (reTypePasswordWay3.hasError('minlength')) {
+      <p class="error">Minimum 6 characters required.</p>
+    }
+  }
+
+  @if (reTypePasswordWay3.value &&
+       signupRequestViewWay3.password !==
+       signupRequestViewWay3.reTypePassword) {
+    <p class="error">Passwords do not match.</p>
+  }
+
+  <br /><br />
+
+  <button type="submit">Signup Way-3</button>
+</form>
+
+<hr />
+
+<!-- ========================= -->
+<!-- WAY 4 -->
+<!-- REACTIVE FORM -->
+<!-- ========================= -->
+
+<h1>Signup | Way-4 (Reactive Form)</h1>
+
+<form
+  [formGroup]="signupReactiveFormGroup2"
+  (ngSubmit)="submitway4()"
+  novalidate
+>
+
+  <!-- First Name -->
+  <input
+    type="text"
+    placeholder="First Name"
+    formControlName="firstName"
+  />
+
+  @if (signupReactiveFormGroup2.get('firstName')?.touched) {
+    @if (signupReactiveFormGroup2.get('firstName')?.hasError('required')) {
+      <p class="error">First name is required.</p>
+    }
+    @if (signupReactiveFormGroup2.get('firstName')?.hasError('minlength')) {
+      <p class="error">Minimum 2 characters required.</p>
+    }
+    @if (signupReactiveFormGroup2.get('firstName')?.hasError('maxlength')) {
+      <p class="error">Maximum 20 characters allowed.</p>
+    }
+  }
+
+  <br /><br />
+
+  <!-- Last Name -->
+  <input
+    type="text"
+    placeholder="Last Name"
+    formControlName="lastName"
+  />
+
+  @if (signupReactiveFormGroup2.get('lastName')?.touched) {
+    @if (signupReactiveFormGroup2.get('lastName')?.hasError('required')) {
+      <p class="error">Last name is required.</p>
+    }
+    @if (signupReactiveFormGroup2.get('lastName')?.hasError('minlength')) {
+      <p class="error">Minimum 2 characters required.</p>
+    }
+    @if (signupReactiveFormGroup2.get('lastName')?.hasError('maxlength')) {
+      <p class="error">Maximum 20 characters allowed.</p>
+    }
+  }
+
+  <br /><br />
+
+  <!-- Email -->
+  <input
+    type="email"
+    placeholder="Email"
+    formControlName="email"
+  />
+
+  @if (signupReactiveFormGroup2.get('email')?.touched) {
+    @if (signupReactiveFormGroup2.get('email')?.hasError('required')) {
+      <p class="error">Email is required.</p>
+    }
+    @if (signupReactiveFormGroup2.get('email')?.hasError('email')) {
+      <p class="error">Enter a valid email address.</p>
+    }
+  }
+
+  <br /><br />
+
+  <!-- Password -->
+  <input
+    type="password"
+    placeholder="Password"
+    formControlName="password"
+  />
+
+  @if (passwordControl.touched && passwordControl.invalid) {
+    @if (passwordControl.hasError('required')) {
+      <p class="error">Password is required.</p>
+    }
+    @if (passwordControl.hasError('pattern')) {
+      <p class="error">
+        Password must be 8–12 characters and include uppercase,
+        lowercase, number and special character (@$!%*?&).
+      </p>
+    }
+  }
+
+  <!-- Password Rules -->
+  <div class="password-rules">
+
+    <div [class.valid]="hasMinLength" [class.invalid]="!hasMinLength">
+      <mat-icon>{{ hasMinLength ? 'check_circle' : 'cancel' }}</mat-icon>
+      <span>At least 8 characters</span>
+    </div>
+
+    <div [class.valid]="hasNumber" [class.invalid]="!hasNumber">
+      <mat-icon>{{ hasNumber ? 'check_circle' : 'cancel' }}</mat-icon>
+      <span>At least 1 number</span>
+    </div>
+
+    <div [class.valid]="hasUppercase" [class.invalid]="!hasUppercase">
+      <mat-icon>{{ hasUppercase ? 'check_circle' : 'cancel' }}</mat-icon>
+      <span>At least 1 uppercase letter</span>
+    </div>
+
+    <div [class.valid]="hasLowercase" [class.invalid]="!hasLowercase">
+      <mat-icon>{{ hasLowercase ? 'check_circle' : 'cancel' }}</mat-icon>
+      <span>At least 1 lowercase letter</span>
+    </div>
+
+    <div [class.valid]="hasSpecialChar" [class.invalid]="!hasSpecialChar">
+      <mat-icon>{{ hasSpecialChar ? 'check_circle' : 'cancel' }}</mat-icon>
+      <span>At least 1 special character (@$!%*?&)</span>
+    </div>
+
+  </div>
+
+  <br />
+
+  <!-- Re-type Password -->
+  <input
+    type="password"
+    placeholder="Re-type Password"
+    formControlName="retypePassword"
+  />
+
+  @if (retypePasswordControl.touched &&
+       retypePasswordControl.hasError('required')) {
+    <p class="error">Please re-type your password.</p>
+  }
+
+  @if (retypePasswordControl.value) {
+    <div class="match-message">
+      <span [class.valid]="passwordsMatch"
+            [class.invalid]="!passwordsMatch">
+        <mat-icon>
+          {{ passwordsMatch ? 'check_circle' : 'cancel' }}
+        </mat-icon>
+        {{ passwordsMatch ? 'Password matched' : 'Password does not match' }}
+      </span>
+    </div>
+  }
+
+  <br /><br />
+
+  <button
+    type="submit"
+    [disabled]="signupReactiveFormGroup2.invalid || !passwordsMatch"
+  >
+    Submit Way-4
+  </button>
+
+</form>

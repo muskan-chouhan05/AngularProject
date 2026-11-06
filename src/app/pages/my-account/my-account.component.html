@@ -1,0 +1,120 @@
+ <a routerLink="/my-account">my account</a>
+<br>
+<br>
+ <a routerLink="/">go to Dashboard</a> 
+
+<h1> login </h1>
+<h2> signup | way-4 (Reactive Form vallidation with types of errors) </h2>
+<br><br>
+<form [formGroup]="signupReactiveFormGroup2" (ngSubmit)="submitway4()">
+
+<input type="text" placeholder="First Name" name="firstName" formControlName="firstName"/>
+<div *ngIf="signupReactiveFormGroup2.get('firstName')?.touched">
+
+  <span *ngIf="signupReactiveFormGroup2.get('firstName')?.hasError('required')">
+    First Name is required
+  </span>
+
+  <span *ngIf="signupReactiveFormGroup2.get('firstName')?.hasError('minlength')">
+    Minimum 2 characters required
+  </span>
+
+  <span *ngIf="signupReactiveFormGroup2.get('firstName')?.hasError('maxlength')">
+    Maximum 20 characters allowed
+  </span>
+
+</div>
+
+<br><br>
+  
+<input type="text" placeholder="Last Name" name="lastName" formControlName="lastName"/>
+<br><br>
+  <div *ngIf="signupReactiveFormGroup2.get('lastName')?.touched">
+
+  <span *ngIf="signupReactiveFormGroup2.get('lastName')?.hasError('required')">
+    last Name is required
+  </span>
+
+  <span *ngIf="signupReactiveFormGroup2.get('lastName')?.hasError('minlength')">
+    Minimum 2 characters required
+  </span>
+
+  <span *ngIf="signupReactiveFormGroup2.get('lastName')?.hasError('maxlength')">
+    Maximum 20 characters allowed
+  </span>
+</div>
+<input type="text" placeholder="Email" name="email" formControlName="email"/>
+<br><br>
+<div *ngIf="signupReactiveFormGroup2.get('email')?.touched">
+
+  <span *ngIf="signupReactiveFormGroup2.get('email')?.hasError('required')">
+    email is required
+  </span>
+</div>
+
+
+<input type="password" placeholder="Password" name="password" formControlName="password"   (input)="signupReactiveFormGroup2.get('password')?.updateValueAndValidity()"/>
+<br><br>
+ <div class="password-rules">
+
+   <div [class.valid]="hasMinLength" [class.invalid]="!hasMinLength">
+  <mat-icon>
+    {{ hasMinLength ? 'check_circle' : 'cancel' }}
+  </mat-icon>
+  <span>Must be at least 8 characters!</span>
+</div>
+    <div [class.valid]="hasNumber" [class.invalid]="!hasNumber">
+
+      <mat-icon>
+        {{ hasNumber ? 'check_circle' : 'cancel' }}
+      </mat-icon>
+      <span>Must contain at least 1 number!</span>
+    </div>
+
+    <div [class.valid]="hasUppercase" [class.invalid]="!hasUppercase">
+      <mat-icon>
+        {{ hasUppercase ? 'check_circle' : 'cancel' }}
+      </mat-icon>
+      <span>Must contain at least 1 in Capital Case!</span>
+    </div>
+    <div [class.valid]="hasLowercase"
+         [class.invalid]="!hasLowercase">
+      <mat-icon>
+        {{ hasLowercase ? 'check_circle' : 'cancel' }}
+      </mat-icon>
+      <span>Must contain at least 1 Letter in Small Case!</span>
+    </div>
+    <div [class.valid]="hasSpecialChar"
+         [class.invalid]="!hasSpecialChar">
+      <mat-icon>
+        {{ hasSpecialChar ? 'check_circle' : 'cancel' }}
+      </mat-icon>
+      <span>Must contain at least 1 Special Character!</span>
+    </div>
+  </div>
+
+  <input matInput
+         type="password"
+         placeholder="Retype Password"
+         name="retypePassword"
+         formControlName="retypePassword">
+<div
+    class="match-message"
+    *ngIf="signupReactiveFormGroup2.get('retypePassword')?.value">
+
+    <span
+      [class.valid]="passwordsMatch"
+      [class.invalid]="!passwordsMatch">
+
+      {{ passwordsMatch ? 'Password matched' : 'Password does not match' }}
+
+    </span>
+
+  </div>
+   
+
+<br><br>
+
+<button [disabled]=!signupReactiveFormGroup2.valid >Submitway4</button>
+</form>  
+

@@ -1,0 +1,31 @@
+<h1> login </h1>
+<h2> signup | way-4 (Reactive Form vallidation with types of errors) </h2>
+<br><br>
+<form [formGroup]="signupReactiveFormGroup2" (ngSubmit)="submitway4()">
+
+<input type="text" placeholder="First Name" name="firstName" formControlName="firstName"/>
+<br><br>
+  @if (Form.get('name')?.invalid && (Form.get('name')?.dirty || Form.get('name')?.touched)) {
+    <div class="error-container">
+      <!-- 2. Target specific validation errors -->
+      @if (Form.get('name')?.hasError('required')) {
+        <small class="error-msg">Name is required.</small>
+      }
+      @if (Form.get('name')?.hasError('minlength')) {
+        <small class="error-msg">Must be at least 4 characters long.</small>
+      }
+    </div>
+  }
+<input type="text" placeholder="Last Name" name="lastName" formControlName="lastName"/>
+<br><br>
+
+<input type="text" placeholder="Email" name="email" formControlName="email"/>
+<br><br>
+
+<input type="password" placeholder="Password" name="password" formControlName="password"/>
+<br><br>
+
+<input type="password" placeholder="Retype Password" name="retypePassword" formControlName="retypePassword"/>
+<br><br>
+<button [disabled]=!signupReactiveFormGroup2.valid >Submitway4></button>
+</form>

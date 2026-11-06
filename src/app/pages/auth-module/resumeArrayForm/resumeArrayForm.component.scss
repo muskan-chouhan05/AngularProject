@@ -1,0 +1,200 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  padding: 35px 20px;
+  background: #f3f6fb;
+  font-family: Arial, sans-serif;
+  color: #263238;
+  box-sizing: border-box;
+}
+
+// Main heading
+h1 , h3{
+  max-width: 850px;
+  margin: 0 auto 25px;
+  text-align: center;
+  font-size: 32px;
+  color: #1e3a5f;
+  font-weight: 700;
+}
+
+// Main form
+form {
+  max-width: 850px;
+  margin: auto;
+  padding: 30px;
+  background: #ffffff;
+  border-radius: 14px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+  box-sizing: border-box;
+}
+
+// Personal details
+form > div:not([formArrayName]) {
+  margin-bottom: 15px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+// Inputs and dropdowns
+input,
+select {
+  width: 100%;
+  margin-top: 8px;
+  padding: 12px 14px;
+  border: 1px solid #d5dce5;
+  border-radius: 7px;
+  background: #fff;
+  color: #263238;
+  font-size: 14px;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+input:focus,
+select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+// Validation errors
+span[style*="color: red"] {
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+span[style*="color: red"] p {
+  margin: 5px 0 0;
+  color: #dc2626;
+}
+
+// Education and Skills sections
+[formArrayName] {
+  margin-top: 25px;
+  padding: 22px;
+  border: 1px solid #e0e7ef;
+  border-radius: 10px;
+  background: #f9fbff;
+}
+
+[formArrayName] > label {
+  display: block;
+  margin-bottom: 18px;
+  color: #1e3a5f;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+// Each education / skill row
+[formArrayName] > div[formGroupName] {
+  display: grid;
+  grid-template-columns: 2fr 1.2fr 1fr auto;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 12px;
+  padding: 15px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+}
+
+[formArrayName="skills"] > div[formGroupName] {
+  grid-template-columns: 2fr 1fr auto;
+}
+
+// Remove extra top margin inside repeated rows
+[formArrayName] > div[formGroupName] input,
+[formArrayName] > div[formGroupName] select {
+  min-width: 0;
+  margin-top: 0;
+}
+
+// Buttons
+button {
+  padding: 11px 18px;
+  border: none;
+  border-radius: 7px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+button:hover:not(:disabled) {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+}
+
+// Remove buttons
+[formGroupName] button {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+[formGroupName] button:hover {
+  background: #fecaca;
+}
+
+// Add buttons
+[formArrayName] > button {
+  margin-top: 5px;
+  background: #0f766e;
+}
+
+[formArrayName] > button:hover {
+  background: #115e59;
+}
+
+// Submit button
+button[type="submit"] {
+  display: block;
+  width: 100%;
+  margin-top: 25px;
+  padding: 14px;
+  font-size: 16px;
+  background: #1e3a5f;
+}
+
+button[type="submit"]:hover:not(:disabled) {
+  background: #142b48;
+}
+
+button:disabled {
+  background: #aab5c5;
+  cursor: not-allowed;
+  transform: none;
+  opacity: 0.75;
+}
+
+// Responsive design
+@media (max-width: 700px) {
+  :host {
+    padding: 20px 12px;
+  }
+
+  h1 {
+    font-size: 26px;
+  }
+
+  form {
+    padding: 20px 15px;
+  }
+
+  [formArrayName] {
+    padding: 14px;
+  }
+
+  [formArrayName] > div[formGroupName],
+  [formArrayName="skills"] > div[formGroupName] {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  [formGroupName] button {
+    width: 100%;
+  }
+}
